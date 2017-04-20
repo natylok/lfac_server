@@ -1,0 +1,3 @@
+exports.collectionList = {
+    USERS:"users"
+};
