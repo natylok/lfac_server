@@ -29,6 +29,15 @@ exports.addToDatabase = function(collection,data,done){
         return done(res,true);
     })
 }   
+exports.query = function(collection,query,next){
+    var currentCollection = databaseState.database.collection(collection);
+    currentCollection.find(query,function(err,res){
+        if (err){
+            return next(err);
+        }
+        return next(res);
+    });
+}
 
 exports.close = function(done){
     if(databaseState.database){

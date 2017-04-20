@@ -10,7 +10,7 @@ router.get('/', function (req, res) {
         }
         else{
             res.setHeader('Content-Type', 'application/json');
-            res.status(400).send("Could not add the value , please take a look");
+            res.status(400).send('{"Reason" : "Could not add the value , please take a look"}');
         }
 
     });
