@@ -31,11 +31,11 @@ exports.addToDatabase = function(collection,data,done){
 }   
 exports.query = function(collection,query,next){
     var currentCollection = databaseState.database.collection(collection);
-    currentCollection.find(query,function(err,res){
+    currentCollection.find(query).toArray(function(err,res){
         if (err){
-            return next(err);
+            return next(false,err);
         }
-        return next(res);
+        return next(true,res);
     });
 }
 
