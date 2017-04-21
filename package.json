@@ -2,8 +2,7 @@
   "name": "lfac_server",
   "version": "0.0.0",
   "private": true,
-  "scripts": {
-  },
+  "scripts": {},
   "dependencies": {
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
@@ -12,7 +11,10 @@
     "jade": "~1.11.0",
     "morgan": "~1.8.1",
     "serve-favicon": "~2.4.2",
-    "kerberos" : "~0.0.17",
-    "mongodb" : "~2.0.33"
+    "kerberos": "~0.0.17",
+    "mongodb": "~2.0.33"
+  },
+  "devDependencies": {
+    "express-session": "^1.15.2"
   }
 }

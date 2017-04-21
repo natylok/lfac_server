@@ -32,8 +32,17 @@ function handleLoginRequest(req,res){
     }
 
     function handleUserLoggedinSuccessfully(data) {
-        req.session.user = data && data[0];
-        res.redirect('/aaa');
+        setSessionCookie(data,function(){
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).send(JSON.stringify({data}));
+        });
+    }
+    /* $.ajax({ xhrFields: { withCredentials: true },type: 'POST', url: 'http://localhost:8877/login',data: JSON.stringify(d), contentType: "application/json" }).then(function (data) { console.log(data) });*/
+    function setSessionCookie(data,setSuccesResponse){
+        req.session.lfac_user = data[0];
+        req.session.save(function(err){
+            setSuccesResponse();
+        });
     }
 }
 
