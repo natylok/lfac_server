@@ -28,7 +28,9 @@ function handleLoginRequest(req,res){
             res.setHeader('Content-Type', 'application/json');
             res.status(400).send(JSON.stringify({ "Reason": JSON.stringify(data) }));
         }
-        handleUserLoggedinSuccessfully(data);
+        else{
+            handleUserLoggedinSuccessfully(data);
+        }
     }
 
     function handleUserLoggedinSuccessfully(data) {

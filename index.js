@@ -4,8 +4,10 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var DataBaseService = require('./services/dbService');
 var basicMiddleWare = require('./middlewares/basicMiddleWare');
+var authMiddleWare = require('./middlewares/authMiddleWare');
 var app = express();
 app.use(basicMiddleWare);
+
 app.use(bodyParser.json());
 app.use(session({
     secret: "fd34s@!@dfa453f3DF#$D&W",
@@ -17,7 +19,7 @@ app.use(session({
 
 
 //All middlewares
-
+app.use('/1', authMiddleWare);
 
 
 
