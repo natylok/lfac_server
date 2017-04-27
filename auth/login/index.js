@@ -26,7 +26,7 @@ function handleLoginRequest(req,res){
     function handleResponseFromDB(isSuccess, data) {
         if (!isSuccess || data.length == 0) {
             res.setHeader('Content-Type', 'application/json');
-            res.status(400).send(JSON.stringify({ "Reason": JSON.stringify(data) }));
+            res.status(400).send(JSON.stringify({ "Reason": "User name or password are not exist" }));
         }
         else{
             handleUserLoggedinSuccessfully(data);
