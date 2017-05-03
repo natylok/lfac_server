@@ -27,7 +27,8 @@ function handleRegisterationRequest(req,res){
         var jsonForQuery = {$or : [{userName:userName},{email:email}]};
         DataBaseService.query(constantObj.collectionList.USERS, jsonForQuery,function(isSuccess,data){
             if (isSuccess){
-                return addData(data && data.length != 0);
+                var isUserExist = data && data.length != 0;
+                return addData(isUserExist);
             }
             else{
                 res.setHeader('Content-Type', 'application/json');
