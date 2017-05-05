@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var DataBaseService = require('../../services/dbService');
 var constantObj = require('../../staticData/constants');
+var Global = require('../../services/globalService');
 var userDetails;
 
 
@@ -41,6 +42,7 @@ function handleLoginRequest(req,res){
     }
     /* $.ajax({ xhrFields: { withCredentials: true },type: 'POST', url: 'http://localhost:8877/login',data: JSON.stringify(d), contentType: "application/json" }).then(function (data) { console.log(data) });*/
     function setSessionCookie(data,setSuccesResponse){
+        Global.currentUser = data[0];
         req.session.lfac_user = data[0];
         req.session.save(function(err){
             setSuccesResponse();
