@@ -1,3 +1,4 @@
 exports.collectionList = {
-    USERS:"users"
+    USERS:"users",
+    GAMES:"games"
 };
