@@ -1,2 +1,4 @@
-var Global = {};
+var Global = {
+    games:{}
+};
 module.exports = Global;

@@ -28,7 +28,7 @@ exports.addToDatabase = function(collection,data,done){
         return err ? done(err,false) : done(res,true);
     })
 }   
-exports.query = function(collection,query,next){
+exports.runFindQuery = function(collection,query,next){
     var currentCollection = databaseState.database.collection(collection);
     currentCollection.find(query).toArray(function(err,res){
         if (err){

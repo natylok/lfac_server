@@ -1,7 +1,6 @@
 exports.collectionList = {
     USERS:"users",
-    GAMES:"games"
+    GAMES:"games",
+    PLAYERS:"players",
+    CLANS:"clans"
 };
-exports.queriesShall = {
-    getGame : ""
-}

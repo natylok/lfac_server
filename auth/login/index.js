@@ -19,7 +19,7 @@ function handleLoginRequest(req,res){
 
     function getDatabaseDetails(userName, password) {
         var queryForDB = { "userName": userName, "password": password };
-        DataBaseService.query(constantObj.collectionList.USERS, queryForDB, function (isSuccess, data) {
+        DataBaseService.runFindQuery(constantObj.collectionList.USERS, queryForDB, function (isSuccess, data) {
             handleResponseFromDB(isSuccess, data);
         });
     }

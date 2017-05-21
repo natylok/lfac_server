@@ -25,7 +25,7 @@ function handleRegisterationRequest(req,res){
     }
     function verifyUserDoesNotExist(userName,email,addData){
         var jsonForQuery = {$or : [{userName:userName},{email:email}]};
-        DataBaseService.query(constantObj.collectionList.USERS, jsonForQuery,function(isSuccess,data){
+        DataBaseService.runFindQuery(constantObj.collectionList.USERS, jsonForQuery,function(isSuccess,data){
             if (isSuccess){
                 var isUserExist = data && data.length != 0;
                 return addData(isUserExist);

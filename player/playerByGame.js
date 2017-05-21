@@ -4,23 +4,24 @@ var router = express.Router();
 var DataBaseService = require('../services/dbService');
 var constantObj = require('../staticData/constants');
 
-router.get('/list', getGameList);
+router.get('/:id', getPlayerDetails);
 
-function getGameList(req,res){
-    if(!Global.gameList){
-        DataBaseService.runFindQuery(constantObj.collectionList.GAMES, {}, handleResponseFromDB);
+function getPlayerDetails(req, res) {
+    if (!Global.player) {
+        var query = {userId:req['id']}
+        DataBaseService.runFindQuery(constantObj.collectionList.CLANS, query, handleResponseFromDB);
     }
-    else{
+    else {
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).send(JSON.stringify(Global.gameList));
+        res.status(200).send(JSON.stringify(Global.player));
     }
-    function handleResponseFromDB(isSuccess,data){
-        if (!isSuccess || data.length == 0) {
+    function handleResponseFromDB(isSuccess, data) {
+        if (!isSuccess) {
             res.setHeader('Content-Type', 'application/json');
-            res.status(400).send(JSON.stringify({ "Reason": "User name or password are not exist" }));
+            res.status(400).send(JSON.stringify({ "Reason": "Could not get user from database" }));
         }
         else {
-            Global.gameList = data;
+            Global.games = data;
             res.setHeader('Content-Type', 'application/json');
             res.status(200).send(JSON.stringify(data));
         }
