@@ -11,7 +11,7 @@ function getPlayersAndClansForGame(req, res) {
         var dataToReturn = {};
         var queryForClans = {gameId:req.body.gameId}
         DataBaseService.runFindQuery(constantObj.collectionList.CLANS, queryForClans, function(isSuccess,clanData){
-            if (!isSuccess || clanData.length == 0) {
+            if (!isSuccess) {
                 res.setHeader('Content-Type', 'application/json');
                 res.status(400).send(JSON.stringify({ "Reason": "Could not find the game of this specific state" }));
             }
@@ -27,12 +27,13 @@ function getPlayersAndClansForGame(req, res) {
         res.status(200).send(JSON.stringify(Global.games[req.params.state]));
     }
     function handleResponseFromDB(isSuccess, playersData) {
-        if (!isSuccess || playersData.length ==0) {
+        if (!isSuccess) {
             res.setHeader('Content-Type', 'application/json');
             res.status(400).send(JSON.stringify({ "Reason": "Could not find the game of this specific state" }));
         }
         else {
             dataToReturn.players = playersData;
+            dataToReturn.state = req.params.state;
             Global.games[req.params.state] = dataToReturn;
             res.setHeader('Content-Type', 'application/json');
             res.status(200).send(JSON.stringify(dataToReturn));
