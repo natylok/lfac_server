@@ -33,6 +33,7 @@ var registerationRoutes = require('./auth/register/index.js');
 var userRoutes = require('./user/userRoutes');
 var gamesList = require('./games/gameList');
 var gameDetails = require('./games/gameDetails');
+var playerRoutes = require('./players/playerRoutes');
 //Middleware function to log request protocol
 
 
@@ -41,7 +42,7 @@ app.use('/login',loginRoutes);
 app.use('/register', registerationRoutes);
 app.use('/1/user', userRoutes);
 app.use('/games', gamesList, gameDetails);
-
+app.use('/1/players', playerRoutes);
 
 DataBaseService.connect(function(){
     app.listen(8877);
